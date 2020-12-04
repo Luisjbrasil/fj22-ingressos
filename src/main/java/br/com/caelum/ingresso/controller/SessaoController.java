@@ -45,6 +45,7 @@ public class SessaoController {
 	      
 	 }
 	 
+	 @GetMapping("/admin/sessao")
 	 public ModelAndView form(@RequestParam("salaId") Integer salaId, SessaoForm form) {
 		 
 		  

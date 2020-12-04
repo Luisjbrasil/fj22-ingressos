@@ -19,6 +19,21 @@ public class GerenciadorDeSessao {
 	
     }
 	
+	public boolean cabe(Sessao sessaoNova) {
+		
+		
+		 System.out.println("Entrou na validacao.....");
+		 
+		if (terminaAmanha(sessaoNova)) {
+		   return false;
+		 }
+		 
+		 return sessoesDaSala.stream().noneMatch(sessaoExistente ->
+	                                 	horarioIsConflitante(sessaoExistente, sessaoNova)
+	                                 	);
+    }
+	
+	
 	private boolean terminaAmanha(Sessao sessao) {
 	
 		LocalDateTime terminoSessaoNova = getTerminoSessaoComDiaDeHoje(sessao);
@@ -33,14 +48,7 @@ public class GerenciadorDeSessao {
 	}
 	
 	
-	public boolean cabe(Sessao sessaoNova) {
-		 if (terminaAmanha(sessaoNova)) {
-		 return false;
-		 }
-		 return sessoesDaSala.stream().noneMatch(sessaoExistente ->
-	                                 	horarioIsConflitante(sessaoExistente, sessaoNova)
-	                                 	);
-}
+
 	
 	
 private boolean horarioIsConflitante(Sessao sessaoExistente, Sessao sessaoNova) {

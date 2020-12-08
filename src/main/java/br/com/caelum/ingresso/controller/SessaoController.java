@@ -1,6 +1,7 @@
 package br.com.caelum.ingresso.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -20,8 +21,11 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.caelum.ingresso.dao.FilmeDao;
 import br.com.caelum.ingresso.dao.SalaDao;
 import br.com.caelum.ingresso.dao.SessaoDao;
+import br.com.caelum.ingresso.model.ImagemCapa;
 import br.com.caelum.ingresso.model.Sessao;
 import br.com.caelum.ingresso.model.SessaoForm;
+import br.com.caelum.ingresso.model.TipoDeIngresso;
+import br.com.caelum.ingresso.rest.OmdbClient;
 import br.com.caelum.ingresso.validation.GerenciadorDeSessao;
 
 @Controller
@@ -35,6 +39,10 @@ public class SessaoController {
 	 
 	 @Autowired
 	 private SessaoDao sessaoDao;
+	 
+	 @Autowired
+	 private OmdbClient client;
+	 
 	 
 	 @PostMapping(value = "/admin/sessao")
 	 @Transactional
@@ -84,7 +92,35 @@ public class SessaoController {
 	      return modelAndView;
 	 }
 	
+	 @GetMapping("/sessao/{id}/lugares")	
+	 public ModelAndView lugaresNaSessao(@PathVariable("id") Integer sessaoId){
+		 
+		 ModelAndView modelAndView = new ModelAndView("sessao/lugares");
+		 
+		 Sessao sessao = sessaoDao.findOne(sessaoId);
+		 
+		 Optional<ImagemCapa> imagemCapa = client.request(sessao.getFilme(), ImagemCapa.class);
+		 
+		 modelAndView.addObject("sessao", sessao);
+		 modelAndView.addObject("imagemCapa", imagemCapa.orElse(new ImagemCapa()));
+		 modelAndView.addObject("tiposDeIngressos", TipoDeIngresso.values());
+		 
+		 
+		 TipoDeIngresso[] lista = TipoDeIngresso.values();
+
+		 
+		 for (TipoDeIngresso a : lista ) {
+			 
+			System.out.println (a.toString());
+			
+		}
+		 
 	
-	
+		 
+		 System.out.println ( );
+		 
+		 return modelAndView;
+	 
+	 }
 
 }

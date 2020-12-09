@@ -10,6 +10,27 @@ public class DetalhesDoFilme {
 	@JsonProperty("Year")
 	 private String ano;
 	 
+	
+	@JsonProperty("Poster")
+	 private String imagem;
+	 
+ 	 @JsonProperty("Director")
+	 private String diretores;
+	 
+	 @JsonProperty("Writer")
+	 private String escritores;
+	 
+	 @JsonProperty("Actors")
+	 private String atores;
+	 
+	 @JsonProperty("Plot")
+	 private String descricao;
+	 
+	 @JsonProperty("imdbRating")
+	 private Double avaliacao;
+	
+	
+	
      public String getTitulo() {
 		return titulo;
 	}
@@ -74,23 +95,6 @@ public class DetalhesDoFilme {
 		this.avaliacao = avaliacao;
 	}
 
-	@JsonProperty("Poster")
-	 private String imagem;
-	 
-  	 @JsonProperty("Director")
-	 private String diretores;
-	 
-	 @JsonProperty("Writer")
-	 private String escritores;
-	 
-	 @JsonProperty("Actors")
-	 private String atores;
-	 
-	 @JsonProperty("Plot")
-	 private String descricao;
-	 
-	 @JsonProperty("imdbRating")
-	 private Double avaliacao;
 	
 	
 	

@@ -17,6 +17,6 @@ public class DescontoParaBancos implements Desconto{
 	    
 	    @Override
 	    public String getDescricao() {
-	    return "Normal";
+	    return "Bancos";
 	    }
 }

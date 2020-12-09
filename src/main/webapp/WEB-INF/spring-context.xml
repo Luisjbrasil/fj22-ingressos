@@ -63,5 +63,15 @@
 			</props>
 		</property>
 	</bean>
+	
+	
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+       <property name="converters">
+         <set>
+           <bean class="br.com.caelum.ingresso.converter.YearMonthConverter"/>
+         </set>
+       </property>
+    </bean>
+	
 
 </beans>

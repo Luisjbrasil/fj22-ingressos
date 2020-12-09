@@ -17,12 +17,20 @@ public class Carrinho {
 		ingressos.add(ingresso);
 	}
 	
+	public void limpa() {
+		 this.ingressos.clear();
+		 }
 	
 	public List<Ingresso> getIngressos() {
 		return ingressos;
 	}
 
-
+	 public Compra toCompra(){
+		 return new Compra(ingressos);
+		 
+	    }
+	 
+	
 	public void setIngressos(List<Ingresso> ingressos) {
 		this.ingressos = ingressos;
 	}

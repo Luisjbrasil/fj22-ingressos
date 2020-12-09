@@ -11,6 +11,12 @@ public class Cartao {
 	public String getNumero() {
 		return numero;
 	}
+	
+	 public boolean isValido(){
+		 return true; //vencimento.isAfter(YearMonth.now());
+	    }
+
+	
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}

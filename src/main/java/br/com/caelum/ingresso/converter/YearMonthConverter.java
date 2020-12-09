@@ -1,4 +1,4 @@
-package br.com.caelum.ingresso.controller;
+package br.com.caelum.ingresso.converter;
 
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;

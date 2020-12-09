@@ -1,11 +1,16 @@
 package br.com.caelum.ingresso.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.caelum.ingresso.dao.CompraDao;
 import br.com.caelum.ingresso.dao.LugarDao;
 import br.com.caelum.ingresso.dao.SessaoDao;
 import br.com.caelum.ingresso.model.Carrinho;
@@ -21,7 +26,43 @@ public class CompraController {
 	 private LugarDao lugarDao;
 	 @Autowired
 	 private Carrinho carrinho;
-	 @PostMapping("/compra/ingressos")
+	 
+	 @Autowired
+	 private CompraDao compraDao;
+	 
+	 public SessaoDao getSessaoDao() {
+		return sessaoDao;
+	}
+
+	public void setSessaoDao(SessaoDao sessaoDao) {
+		this.sessaoDao = sessaoDao;
+	}
+
+	public LugarDao getLugarDao() {
+		return lugarDao;
+	}
+
+	public void setLugarDao(LugarDao lugarDao) {
+		this.lugarDao = lugarDao;
+	}
+
+	public Carrinho getCarrinho() {
+		return carrinho;
+	}
+
+	public void setCarrinho(Carrinho carrinho) {
+		this.carrinho = carrinho;
+	}
+
+	public CompraDao getCompraDao() {
+		return compraDao;
+	}
+
+	public void setCompraDao(CompraDao compraDao) {
+		this.compraDao = compraDao;
+	}
+
+	@PostMapping("/compra/ingressos")
 	 public ModelAndView enviarParaPagamento(CarrinhoForm carrinhoForm){
 		 
 	 ModelAndView modelAndView = new ModelAndView("redirect:/compra");
@@ -30,6 +71,22 @@ public class CompraController {
 	 carrinhoForm.toIngressos(sessaoDao, lugarDao).forEach(carrinho::add);
 	 
 	 return modelAndView;
+	 
+	 }
+	 
+	 @PostMapping("/compra/comprar")
+	 @Transactional
+	 public ModelAndView comprar(@Valid  Cartao cartao, BindingResult result){
+	 ModelAndView modelAndView = new ModelAndView("redirect:/");
+	 if (cartao.isValido()){
+	 }else{
+	  compraDao.save(carrinho.toCompra());
+	  this.carrinho.limpa();
+	  result.rejectValue("vencimento", "Vencimento inválido");
+	  return checkout(cartao);
+	  
+	 }
+	    return modelAndView;
 	 
 	 }
 	 

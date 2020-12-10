@@ -5,8 +5,6 @@ import java.math.RoundingMode;
 
 import javax.persistence.*;
 
-import br.com.caelum.ingresso.model.descontos.Desconto;
-
 
 @Entity
 public class Ingresso {

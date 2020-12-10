@@ -16,6 +16,10 @@ public class CompraDao {
 	 
 	 public void save(Compra compra) {
 	 manager.persist(compra);
+	 
+	 System.out.println("GRAVOU CARRINHO....");
+	 
+	 
 	 }
 	
 	

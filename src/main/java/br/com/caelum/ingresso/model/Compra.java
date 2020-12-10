@@ -19,6 +19,8 @@ public class Compra {
 	
 	 @OneToMany(cascade = CascadeType.PERSIST)
 	 List<Ingresso> ingressos = new ArrayList<>();
+	 
+	 
 	 /**
 	 * @deprecated hibernate only
 	 */
@@ -42,7 +44,13 @@ public class Compra {
 	}
 
 	public Compra(List<Ingresso> ingressos) {
+		ingressos.forEach(this.ingressos::add);
+		 
 	 }
+	
+	public Compra toCompra(){
+		 return  new Compra(ingressos);
+		 }
 	
 	
 }

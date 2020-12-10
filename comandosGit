@@ -5,3 +5,6 @@ git rebase master
 git checkout master
 git merge work
 git branch -d work
+
+// criacao de novo branch
+git checkout -b work 

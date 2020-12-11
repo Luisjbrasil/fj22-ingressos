@@ -18,6 +18,8 @@
                 <th>Preço</th>
                 </thead>
 
+              
+
                 <tbody>
                 <c:forEach items="${carrinho.ingressos}" var="ingresso" varStatus="status">
 
@@ -41,6 +43,8 @@
                 </tfoot>
 
             </table>
+            
+           <form:errors path="*"  cssClass="error" cssStyle="color:red" element="div"  />
 
             <div class="form-group">
                 <div class="col-md-6">
@@ -76,6 +80,8 @@
 
             <div class="form-group">
                 <div class="col-md-6">
+                     <form:errors path="cartao.vencimento"  cssClass="error" cssStyle="color:red" element="div"  />
+                     
                     <label for="vencimento">Vencimento:</label>
                     <input id="vencimento" type="text" name="vencimento" class="form-control">
                 </div>
@@ -86,6 +92,8 @@
                     <button type="submit" class="btn btn-primary">Comprar</button>
                 </div>
             </div>
+            
+             
 
         </form>
 		</div>

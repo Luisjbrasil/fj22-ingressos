@@ -13,8 +13,12 @@ public class Cartao {
 	}
 	
 	 public boolean isValido(){
-		 return true; //vencimento.isAfter(YearMonth.now());
-	    }
+
+		
+		 return vencimento.isAfter(YearMonth.now());
+	    
+	 
+	 }
 
 	
 	public void setNumero(String numero) {
